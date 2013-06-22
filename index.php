@@ -1,6 +1,9 @@
 <?php
+if (!session_id()) session_start();
+
 require 'libs/redbean/rb.php';
 require 'libs/flight/Flight.php';
+require 'libs/flashmessages/flashmessages.inc.php';
 require 'helpers/url_helper.php';
 require 'config/db.php'; 
 require 'core/redbean_crud.php';
@@ -12,12 +15,18 @@ Flight::route('/clientes/new', function() {
 Flight::route('POST /clientes/create', function() {
 	$dao = new RedbeanDAO("clientes");
 	$id = $dao->create(Flight::request()->data);
+	flash("success", "Registro criado!");
 	Flight::redirect("/clientes/{$id}");
 });
 
 Flight::route('/clientes', function() {
 	$dao = new RedbeanDAO("clientes");
-	Flight::render("clientes/list.php", array('list' => $dao->listAll(), 'count' => $dao->count()));
+	Flight::render("clientes/list.php", array('list' => $dao->paginate(1, 2), 'count' => $dao->count(), 'page' => 1));
+});
+
+Flight::route('/clientes/paginate/@page:[0-9]+', function($page) {
+	$dao = new RedbeanDAO("clientes");
+	Flight::render("clientes/list.php", array('list' => $dao->paginate($page, 2), 'count' => $dao->count(), 'page' => $page));
 });
 
 Flight::route('/clientes/@id:[0-9]+', function($id) {
@@ -44,6 +53,7 @@ Flight::route('POST /clientes/update/bean', function() {
 	$dao = new RedbeanDAO("clientes");
 	try {
 		$id = $dao->update($bean->id, Flight::request()->data);
+		flash("success", "Registro atualizado!");
 		Flight::redirect("/clientes/{$id}");
 	} catch (Exception $e) {
 		Flight::halt(404);
@@ -55,9 +65,8 @@ Flight::route('/clientes/delete/@id:[0-9]+', function($id) {
 	$dao = new RedbeanDAO("clientes");
 	try {
 		$dao->delete($id);
-		//Flight::flash('message',array('type'=>'success','text'=>'Registro apagado!'));
+		flash("success", "Registro apagado!");
 		Flight::redirect('/clientes');
-		Flight::flash('message',array('type'=>'error','text'=>'Archivo demasiado grande.'));	
 	} catch(Exception $e) {
 		Flight::halt(404);	
 	}

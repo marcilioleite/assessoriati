@@ -22,6 +22,12 @@
 		
 		<script src="<?php echo UrlHelper::getJavascriptPath("jquery-2.0.2.min") ?>"></script>
 		<script src="<?php echo UrlHelper::getJavascriptPath("bootstrap.min") ?>"></script>
+		
+		<script src="<?php echo UrlHelper::getJavascriptPath("noty/jquery.noty") ?>"></script>
+		<script src="<?php echo UrlHelper::getJavascriptPath("noty/layouts/center") ?>"></script>
+		<script src="<?php echo UrlHelper::getJavascriptPath("noty/layouts/centerLeft") ?>"></script>
+		<script src="<?php echo UrlHelper::getJavascriptPath("noty/layouts/centerRight") ?>"></script>
+		<script src="<?php echo UrlHelper::getJavascriptPath("noty/themes/default") ?>"></script>
 	</head>
 	<body>
 		<div class="container">

@@ -1,6 +1,6 @@
 <?php include UrlHelper::getHeaderPath(); ?>
 
-<form action="create" method="post" class="form-horizontal">
+<form action="<?php echo UrlHelper::getRoot() ?>clientes/create" method="post" class="form-horizontal">
 	<fieldset>
 
 		<!-- Form Name -->
@@ -139,7 +139,7 @@
 			<button type="submit" class="btn btn-success">
 				Finalizar
 			</button>
-			<a href="../clientes" class="btn">
+			<a href="<?php echo UrlHelper::getRoot() ?>clientes" class="btn">
 				Cancelar
 			</a>
 		</div>

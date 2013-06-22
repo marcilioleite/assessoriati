@@ -4,7 +4,7 @@
 
 <?php if ($count > 0): ?>
 	
-<a href="clientes/new">Novo cliente</a>
+<a href="<?php echo UrlHelper::getRoot() ?>clientes/new">Novo cliente</a>
 <hr>
 
 <div class="row">
@@ -38,10 +38,12 @@
 							<?php echo $item->id ?>
 						</td>
 						<td>
-							<a href="clientes/<?php echo $item->id ?>"><?php echo $item->nome ?></a>
+							<a href="<?php echo UrlHelper::getRoot() ?>clientes/<?php echo $item->id ?>"><?php echo $item->nome ?></a>
 						</td>
 						<td>
+							<?php if ($item->cidade != ""): ?>
 							<?php echo $item->cidade . " - " . $item->estado ?>
+							<?php endif ?>
 						</td>
 						<td>
 							<?php echo $item->email ?>
@@ -51,8 +53,8 @@
 						</td>
 						<td>
 							<div class="btn-group pull-right">
-								<a href="clientes/edit/<?php echo $item->id ?>" class="btn btn-mini">Editar</a>
-								<a href="clientes/delete/<?php echo $item->id ?>" class="btn btn-danger btn-mini">Apagar</a>
+								<a href="<?php echo UrlHelper::getRoot() ?>clientes/edit/<?php echo $item->id ?>" class="btn btn-mini">Editar</a>
+								<a href="<?php echo UrlHelper::getRoot() ?>clientes/delete/<?php echo $item->id ?>" id="btn-delete" class="btn btn-danger btn-mini">Apagar</a>
 							</div>
 						</td>
 					</tr>
@@ -112,7 +114,7 @@
 				<button type="submit" class="btn btn-success">
 					Filtrar
 				</button>
-				<a href="clientes" class="btn">
+				<a href="<?php echo UrlHelper::getRoot() ?>clientes" class="btn">
 					Limpar filtros
 				</a>
 			</div>
@@ -122,15 +124,11 @@
 </div>
 
 <div class="pagination">
-	<ul>
-		<li><a href="#">Anteriores</a></li>
-		<li><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-		<li><a href="#">Próximos</a></li>
-	</ul>
+    <ul>
+	    <li class="disabled"><a href="<?php echo UrlHelper::getRoot() ?>clientes/paginate/<?php echo max(1, $page - 1) ?>">&laquo;</a></li>
+    	<li class="active"><a href="#">1</a></li>
+    	<li class="disabled"><a href="<?php echo UrlHelper::getRoot() ?>clientes/paginate/<?php echo $page + 1 ?>">&raquo;</a></li>
+    </ul>
 </div>
 
 <?php else: ?>
@@ -140,5 +138,27 @@
 </div>
 
 <?php endif ?>
+<script>
+	$('a#btn-delete').click(function(event) {
+		event.preventDefault();
+		var that = $(this);
+		noty({
+		  text: 'Tem certeza que deseja continuar esta operação?',
+		  layout: 'center',
+		  modal: true,
+		  buttons: [
+		    {addClass: 'btn btn-success', text: 'Sim', onClick: function($noty) {
+		        $noty.close();
+		        window.location = that.attr('href');
+		      }
+		    },
+		    {addClass: 'btn', text: 'Não', onClick: function($noty) {
+		        $noty.close();
+		      }
+		    }
+		  ]
+		})			
+	})
+</script>
 
 <?php include UrlHelper::getFooterPath(); ?>

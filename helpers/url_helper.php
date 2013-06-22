@@ -1,6 +1,10 @@
 <?php
 class UrlHelper {
-	
+
+	public static function getRoot() {
+		return "http://$_SERVER[SERVER_NAME]/assessoriati/";
+	}
+		
 	public static function getHeaderPath() {
 		return "$_SERVER[DOCUMENT_ROOT]/assessoriati/views/shared/header.php";
 	}
@@ -15,5 +19,5 @@ class UrlHelper {
 	
 	public static function getJavascriptPath($javascript) {
 		return "http://$_SERVER[SERVER_NAME]/assessoriati/static/js/$javascript.js";
-	}	
+	}
 }

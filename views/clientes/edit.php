@@ -1,6 +1,6 @@
 <?php include UrlHelper::getHeaderPath(); ?>
 
-<form action="../update/bean" method="post" class="form-horizontal">
+<form action="<?php echo UrlHelper::getRoot() ?>clientes/update/bean" method="post" class="form-horizontal">
 	<fieldset>
 
 		<!-- Form Name -->
@@ -144,7 +144,7 @@
 			<button type="submit" class="btn btn-success">
 				Salvar
 			</button>
-			<a href="../../clientes" class="btn">
+			<a href="<?php echo UrlHelper::getRoot() ?>clientes" class="btn">
 				Cancelar
 			</a>
 		</div>
