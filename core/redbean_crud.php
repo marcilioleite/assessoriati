@@ -15,6 +15,10 @@ class RedbeanDAO {
 		}
 		return R::store($bean);
 	}
+
+	public function count() {
+		return R::count(self::$tablename);
+	}
 	
 	public function listAll() {
 		return R::findAll(self::$tablename);
@@ -34,7 +38,6 @@ class RedbeanDAO {
 		}
 	}
 	
-	// TODO: Consertar update
 	public function update($id, $bean) {
 		$loadedBean = R::load(self::$tablename, $id);
 		if ($loadedBean->id != 0) {
@@ -49,7 +52,7 @@ class RedbeanDAO {
 	
 	public function delete($id) {
 		$bean = R::load(self::$tablename, $id);
-		if ($loadedBean->id != 0) {
+		if ($bean->id != 0) {
 			R::trash($bean);
 		}
 	}

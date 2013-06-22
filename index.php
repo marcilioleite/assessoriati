@@ -17,7 +17,7 @@ Flight::route('POST /clientes/create', function() {
 
 Flight::route('/clientes', function() {
 	$dao = new RedbeanDAO("clientes");
-	Flight::render("clientes/list.php", array('list' => $dao->listAll()));
+	Flight::render("clientes/list.php", array('list' => $dao->listAll(), 'count' => $dao->count()));
 });
 
 Flight::route('/clientes/@id:[0-9]+', function($id) {
@@ -54,7 +54,10 @@ Flight::route('POST /clientes/update/bean', function() {
 Flight::route('/clientes/delete/@id:[0-9]+', function($id) {
 	$dao = new RedbeanDAO("clientes");
 	try {
-		$dao->delete($id);			
+		$dao->delete($id);
+		//Flight::flash('message',array('type'=>'success','text'=>'Registro apagado!'));
+		Flight::redirect('/clientes');
+		Flight::flash('message',array('type'=>'error','text'=>'Archivo demasiado grande.'));	
 	} catch(Exception $e) {
 		Flight::halt(404);	
 	}

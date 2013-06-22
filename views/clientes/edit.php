@@ -8,6 +8,8 @@
 			Editar Cliente #<?php echo $bean->id ?>
 		</legend>
 
+		<input type="hidden" name="id" value="<?php echo $bean->id ?>">
+		
 		<!-- Text input-->
 		<div class="control-group">
 			<label class="control-label">Nome</label>
@@ -98,6 +100,17 @@
 
 		<!-- Text input-->
 		<div class="control-group">
+			<label class="control-label">E-mail</label>
+			<div class="controls">
+				<input id="email" name="email" type="text" placeholder="" class="input-xlarge" required="" value="<?php echo $bean->email ?>">
+				<p class="help-block">
+					Ex.: nome@exemplo.com
+				</p>
+			</div>
+		</div>
+
+		<!-- Text input-->
+		<div class="control-group">
 			<label class="control-label">Telefone</label>
 			<div class="controls">
 				<input id="telefone" name="telefone" type="text" placeholder="" class="input-xlarge" required="" value="<?php echo $bean->telefone ?>">
@@ -128,13 +141,12 @@
 
 		<!-- Button -->
 		<div class="form-actions">
-				<button type="submit" class="btn btn-success">
-					Salvar
-				</button>
-				<button type="reset" class="btn">
-					Cancelar
-				</button>
-			</div>
+			<button type="submit" class="btn btn-success">
+				Salvar
+			</button>
+			<a href="../../clientes" class="btn">
+				Cancelar
+			</a>
 		</div>
 	</fieldset>
 </form>
