@@ -34,8 +34,9 @@ class RedbeanDAO {
 		}
 	}
 	
+	// TODO: Consertar update
 	public function update($id, $bean) {
-		$loadedBean = self::get($id);
+		$loadedBean = R::load(self::$tablename, $id);
 		if ($loadedBean->id != 0) {
 			foreach ($loadedBean as $property => $value) {
 				$loadedBean->{$property} = $bean->{$property};
@@ -47,7 +48,10 @@ class RedbeanDAO {
 	}
 	
 	public function delete($id) {
-		R::trash(self::get($id));
+		$bean = R::load(self::$tablename, $id);
+		if ($loadedBean->id != 0) {
+			R::trash($bean);
+		}
 	}
 	
 	public function deleteAll() {
