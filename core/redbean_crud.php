@@ -10,7 +10,7 @@ class RedbeanDAO {
 		
 	public function create($data) {
 		$bean = R::dispense(self::$tablename);
-		foreach ($data['bean'] as $key => $value) {
+		foreach ($data as $key => $value) {
 			$bean->{$key} = $value;
 		}
 		return R::store($bean);
