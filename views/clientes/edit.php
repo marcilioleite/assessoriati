@@ -151,4 +151,11 @@
 	</fieldset>
 </form>
 
+<script>
+	$(function() {
+		$('ul.nav li').removeClass('active')
+		$('#menu-clientes').parent().addClass('active')		
+	})	
+</script>
+
 <?php include UrlHelper::getFooterPath(); ?>

@@ -134,7 +134,7 @@
 <?php else: ?>
 	
 <div class="well">
-	Nenhum registro a ser exibido. <a href="clientes/new">Crie o primeiro agora</a>.
+	Nenhum registro a ser exibido. <a href="<?php echo UrlHelper::getRoot() ?>clientes/new">Crie o primeiro agora</a>.
 </div>
 
 <?php endif ?>
@@ -158,6 +158,10 @@
 		    }
 		  ]
 		})			
+	})
+	$(function() {
+		$('ul.nav li').removeClass('active')
+		$('#menu-clientes').parent().addClass('active')		
 	})
 </script>
 

@@ -1,0 +1,41 @@
+<?php include UrlHelper::getHeaderPath(); ?>
+
+<form action="<?php echo UrlHelper::getRoot() ?>permissoes/update/bean" method="post" class="form-horizontal">
+	<fieldset>
+
+		<!-- Form Name -->
+		<legend>
+			Editar Permissão #<?php echo $bean->id ?>
+		</legend>
+
+		<input type="hidden" name="id" value="<?php echo $bean->id ?>">
+		
+		<!-- Text input-->
+		<div class="control-group">
+			<label class="control-label">Nome</label>
+			<div class="controls">
+				<input id="nome" name="nome" type="text" placeholder="" class="input-xlarge" required="" value="<?php echo $bean->nome ?>">
+
+			</div>
+		</div>
+
+		<!-- Button -->
+		<div class="form-actions">
+			<button type="submit" class="btn btn-success">
+				Salvar
+			</button>
+			<a href="<?php echo UrlHelper::getRoot() ?>permissoes" class="btn">
+				Cancelar
+			</a>
+		</div>
+	</fieldset>
+</form>
+
+<script>
+	$(function() {
+		$('ul.nav li').removeClass('active')
+		$('#menu-configuracoes').parent().addClass('active')		
+	})	
+</script>
+
+<?php include UrlHelper::getFooterPath(); ?>
