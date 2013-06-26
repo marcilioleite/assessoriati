@@ -5,6 +5,8 @@ require 'libs/redbean/rb.php';
 require 'libs/flight/Flight.php';
 require 'libs/flashmessages/flashmessages.inc.php';
 require 'helpers/url_helper.php';
+require 'helpers/paginator_helper.php';
+require 'config/app.php';
 require 'config/db.php'; 
 require 'core/redbean_crud.php';
 
@@ -26,12 +28,12 @@ Flight::route('POST /clientes/create', function() {
 
 Flight::route('/clientes', function() {
 	$dao = new RedbeanDAO("clientes");
-	Flight::render("clientes/list.php", array('list' => $dao->paginate(1, 2), 'count' => $dao->count(), 'page' => 1));
+	Flight::render("clientes/list.php", array('list' => $dao->paginate(1, RESULTS_PER_PAGE), 'count' => $dao->count(), 'page' => 1));
 });
 
 Flight::route('/clientes/paginate/@page:[0-9]+', function($page) {
 	$dao = new RedbeanDAO("clientes");
-	Flight::render("clientes/list.php", array('list' => $dao->paginate($page, 2), 'count' => $dao->count(), 'page' => $page));
+	Flight::render("clientes/list.php", array('list' => $dao->paginate($page, RESULTS_PER_PAGE), 'count' => $dao->count(), 'page' => $page));
 });
 
 Flight::route('/clientes/@id:[0-9]+', function($id) {
@@ -84,8 +86,14 @@ Flight::route('/clientes/delete/@id:[0-9]+', function($id) {
 
 Flight::route('/servicos', function() {
 	$dao = new RedbeanDAO("servicos");
-	Flight::render("servicos/list.php", array('list' => $dao->paginate(1, 2), 'count' => $dao->count(), 'page' => 1));
+	Flight::render("servicos/list.php", array('list' => $dao->paginate(1, RESULTS_PER_PAGE), 'count' => $dao->count(), 'page' => 1));
 });
+
+Flight::route('/servicos/paginate/@page:[0-9]+', function($page) {
+	$dao = new RedbeanDAO("servicos");
+	Flight::render("servicos/list.php", array('list' => $dao->paginate($page, RESULTS_PER_PAGE), 'count' => $dao->count(), 'page' => $page));
+});
+
 
 Flight::route('/servicos/new', function() {
 	Flight::render("servicos/new.php");
@@ -148,7 +156,12 @@ Flight::route('/servicos/delete/@id:[0-9]+', function($id) {
 
  Flight::route('/permissoes', function() {
 	$dao = new RedbeanDAO("permissoes");
-	Flight::render("permissoes/list.php", array('list' => $dao->paginate(1, 2), 'count' => $dao->count(), 'page' => 1));
+	Flight::render("permissoes/list.php", array('list' => $dao->paginate(1, RESULTS_PER_PAGE), 'count' => $dao->count(), 'page' => 1));
+});
+
+Flight::route('/permissoes/paginate/@page:[0-9]+', function($page) {
+	$dao = new RedbeanDAO("permissoes");
+	Flight::render("permissoes/list.php", array('list' => $dao->paginate($page, RESULTS_PER_PAGE), 'count' => $dao->count(), 'page' => $page));
 });
 
 Flight::route('/permissoes/new', function() {

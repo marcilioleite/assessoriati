@@ -1,5 +1,11 @@
 <?php include UrlHelper::getHeaderPath(); ?>
 
+<ul class="breadcrumb">
+  <li><a href="<?php echo UrlHelper::getRoot() ?>">Início</a> <span class="divider">/</span></li>
+  <li><a href="<?php echo UrlHelper::getRoot() ?>permissoes">Permissões</a> <span class="divider">/</span></li>
+  <li class="active">Editar Permissão</li>
+</ul>
+
 <form action="<?php echo UrlHelper::getRoot() ?>permissoes/update/bean" method="post" class="form-horizontal">
 	<fieldset>
 

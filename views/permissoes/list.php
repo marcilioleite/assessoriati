@@ -1,11 +1,21 @@
 <?php include UrlHelper::getHeaderPath(); ?>
 
+<ul class="breadcrumb">
+  <li><a href="<?php echo UrlHelper::getRoot() ?>">Início</a> <span class="divider">/</span></li>
+  <li class="active">Permissões</li>
+</ul>
+
 <h3>Permissões</h3>
 
 <?php if ($count > 0): ?>
 	
-<a href="<?php echo UrlHelper::getRoot() ?>permissoes/new">Novo serviço</a>
+<a href="<?php echo UrlHelper::getRoot() ?>permissoes/new">Nova permissão</a>
 <hr>
+<?php if ($count > 1): ?>
+<p class="text-center muted"><?php echo $count ?> resultados a serem exibidos.</p>
+<?php else: ?>
+<p class="text-center muted"><?php echo $count ?> resultado a ser exibido.</p>
+<?php endif ?>
 
 <div class="row">
 	<div class="span9">
@@ -65,11 +75,17 @@
 	</div>
 </div>
 
+<?php $pages = PaginatorHelper::paginate(UrlHelper::getRoot(), 'servicos/paginate/', round($count % RESULTS_PER_PAGE), $page, 5) ?>
+
 <div class="pagination">
-    <ul>
-	    <li class="disabled"><a href="<?php echo UrlHelper::getRoot() ?>permissoes/paginate/<?php echo max(1, $page - 1) ?>">&laquo;</a></li>
-    	<li class="active"><a href="#">1</a></li>
-    	<li class="disabled"><a href="<?php echo UrlHelper::getRoot() ?>permissoes/paginate/<?php echo $page + 1 ?>">&raquo;</a></li>
+	<ul>
+	<?php foreach ($pages as $pagi): ?>
+		<?php if ($pagi['text'] != $page): ?>
+		<li><a href="<?php echo $pagi['url'] ?>"><?php echo $pagi['text'] ?></a></li>
+		<?php else: ?>
+		<li class="active"><a><?php echo $pagi['text'] ?></a></li>	
+    	<?php endif ?>
+    <?php endforeach ?>
     </ul>
 </div>
 

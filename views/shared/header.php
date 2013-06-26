@@ -19,13 +19,11 @@
 
 		<link rel="stylesheet" href="<?php echo UrlHelper::getStylesheetPath("bootstrap.min") ?>" />
 		<link rel="stylesheet" href="<?php echo UrlHelper::getStylesheetPath("bootstrap-responsive.min") ?>" />
-	    <style type="text/css">
-		    body {
-		        padding-top: 60px;
-		        padding-bottom: 40px;
-		    }
+	    <style>
+	    	.body-content {
+	    		margin-top: 20px;
+	    	}
 	    </style>
-	    
 		<script src="<?php echo UrlHelper::getJavascriptPath("jquery-2.0.2.min") ?>"></script>
 		<script src="<?php echo UrlHelper::getJavascriptPath("bootstrap.min") ?>"></script>
 
@@ -36,7 +34,7 @@
 		<script src="<?php echo UrlHelper::getJavascriptPath("noty/themes/default") ?>"></script>
 	</head>
 	<body>
-		<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar navbar-inverse navbar-static-top">
 			<div class="navbar-inner">
 				<div class="container">
 					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
@@ -77,4 +75,4 @@
 				</div>
 			</div>
 		</div>
-		<div class="container">
+		<div class="body-content container">

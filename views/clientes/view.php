@@ -1,5 +1,11 @@
 <?php include UrlHelper::getHeaderPath(); ?>
 
+<ul class="breadcrumb">
+  <li><a href="<?php echo UrlHelper::getRoot() ?>">Início</a> <span class="divider">/</span></li>
+  <li><a href="<?php echo UrlHelper::getRoot() ?>clientes">Clientes</a> <span class="divider">/</span></li>
+  <li class="active">Cliente</li>
+</ul>
+
 <p class="lead">
 	Cliente #<?php echo $bean->id ?>
 </p>

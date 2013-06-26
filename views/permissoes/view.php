@@ -1,5 +1,12 @@
 <?php include UrlHelper::getHeaderPath(); ?>
 
+<ul class="breadcrumb">
+  <li><a href="<?php echo UrlHelper::getRoot() ?>">Início</a> <span class="divider">/</span></li>
+  <li><a href="<?php echo UrlHelper::getRoot() ?>permissoes">Permissões</a> <span class="divider">/</span></li>
+  <li class="active">Permissão</li>
+</ul>
+
+
 <p class="lead">
 	Permissões #<?php echo $bean->id ?>
 </p>
